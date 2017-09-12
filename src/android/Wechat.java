@@ -149,9 +149,25 @@ public class Wechat extends CordovaPlugin {
             return sendPaymentRequest(args, callbackContext);
         } else if (action.equals("isWXAppInstalled")) {
             return isInstalled(callbackContext);
+        } else if (action.equals("setAppId")) {
+            return setAppId(args, callbackContext);
         }
 
         return false;
+    }
+
+    /**
+     * Set the App Id from the cordova arguments.
+     */
+    protected boolean setAppId(CordovaArgs args, final CallbackContext callbackContext) {
+
+        //The first argument should be the appId
+        this.appId = args.getString(0);
+
+        // send no result
+        sendNoResultPluginResult(callbackContext);
+
+        return true;
     }
 
     protected boolean share(CordovaArgs args, final CallbackContext callbackContext)
@@ -541,10 +557,6 @@ public class Wechat extends CordovaPlugin {
     }
 
     public String getAppId() {
-        if (this.appId == null) {
-            this.appId = preferences.getString(WXAPPID_PROPERTY_KEY, "");
-        }
-
         return this.appId;
     }
 

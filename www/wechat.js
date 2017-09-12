@@ -141,5 +141,9 @@ module.exports = {
      */
     jumpToWechat: function (url, onSuccess, onError) {
         exec(onSuccess, onError, "Wechat", "jumpToWechat", [url]);
+    },
+
+    setAppId: function (appId, onSuccess, onError) {
+        exec(onSuccess, onError, "Wechat", "setAppId", [appId]);
     }
 };
